@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maldives, Maldives — Travel Destinations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #eef2f7; color: #333; }
+
+    /* ── BACK BUTTON ── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 24px 40px;
+      padding: 10px 20px;
+      background: white;
+      color: #2c5364;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .back-btn:hover { background: #2c5364; color: white; transform: translateX(-4px); }
+
+    /* ── HERO SECTION (big image at top) ── */
+    .hero {
+      position: relative;
+      height: 480px;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Dark gradient over hero image so text is readable */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.6));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 40px;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: #56ccf2;
+      color: #0f2027;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+    .hero h1 { font-size: 3rem; color: white; font-weight: 700; letter-spacing: 1px; }
+    .hero-rating { color: #f4a62a; font-size: 1.1rem; margin-top: 8px; }
+    .hero-rating span { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+
+    /* ── MAIN CONTENT WRAPPER ── */
+    .content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 50px 40px 80px;
+    }
+
+    /* ── ABOUT SECTION ── */
+    .about { margin-bottom: 50px; }
+    .about h2 { font-size: 1.6rem; color: #1a1a2e; margin-bottom: 16px; }
+    .about p  { font-size: 1rem; color: #555; line-height: 1.9; }
+
+    /* ── QUICK FACTS GRID ── */
+    .facts-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+    .fact-card {
+      flex: 1 1 200px;
+      background: white;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .fact-card:hover { transform: translateY(-5px); }
+    .fact-card .icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .fact-card h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 6px; }
+    .fact-card p  { font-size: 1rem; font-weight: 600; color: #1a1a2e; }
+
+    /* ── PHOTO GALLERY ── */
+    .gallery-title { font-size: 1.6rem; color: #1a1a2e; margin-bottom: 20px; }
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+    .gallery img {
+      width: 100%; height: 220px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .gallery img:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    .gallery img:first-child { grid-column: span 2; height: 300px; }
+
+    /* ── TOP PLACES ── */
+    .places-title { font-size: 1.6rem; color: #1a1a2e; margin-bottom: 20px; }
+    .places-list { list-style: none; margin-bottom: 50px; }
+    .places-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #1a1a2e;
+      transition: transform 0.25s ease;
+    }
+    .places-list li:hover { transform: translateX(6px); }
+    .places-list li .num {
+      background: #2c5364;
+      color: white;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── BEST TIME TO VISIT ── */
+    .best-time {
+      background: linear-gradient(135deg, #0f2027, #2c5364);
+      color: white;
+      border-radius: 18px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+    .best-time h3 { font-size: 1.2rem; margin-bottom: 10px; color: #56ccf2; }
+    .best-time p  { font-size: 0.95rem; line-height: 1.8; color: #d0e8f2; }
+
+    /* ── BACK TO HOME BUTTON ── */
+    .home-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #2c5364;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .home-btn:hover { background: #0f2027; transform: scale(1.04); }
+
+    footer {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #a8ccd7;
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+    }
+    footer strong { color: #56ccf2; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery img:first-child { grid-column: span 1; }
+      .content { padding: 30px 20px 60px; }
+      .back-btn { margin: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BACK BUTTON — takes user back to home page -->
+  <a href="index.html" class="back-btn">← Back to All Destinations</a>
+
+  <!-- HERO — big photo with city name overlaid -->
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=900" alt="Maldives" />
+    <div class="hero-overlay">
+      <span class="hero-tag">Island</span>
+      <h1>Maldives, Maldives</h1>
+      <div class="hero-rating">★★★★★ <span>5.0 / 5.0</span></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="content">
+
+    <!-- ABOUT -->
+    <div class="about">
+      <h2>About Maldives</h2>
+      <p>The Maldives is a tropical paradise in the Indian Ocean, made up of over 1,000 coral islands grouped into 26 atolls. It is famous for its crystal-clear turquoise lagoons, colourful coral reefs, and overwater bungalows. Offering some of the finest snorkelling and diving in the world, the Maldives is the ultimate escape for those seeking serenity and natural beauty.</p>
+    </div>
+
+    <!-- QUICK FACTS -->
+    <div class="facts-grid">
+      <div class="fact-card">
+        <div class="icon">🌍</div>
+        <h4>Region</h4>
+        <p>Island</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">⭐</div>
+        <h4>Rating</h4>
+        <p>5.0 / 5.0</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">💬</div>
+        <h4>Language</h4>
+        <p>Dhivehi / English</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">💰</div>
+        <h4>Currency</h4>
+        <p>Rufiyaa (MVR)</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">🌡️</div>
+        <h4>Climate</h4>
+        <p>Tropical</p>
+      </div>
+      <div class="fact-card">
+        <div class="icon">✈️</div>
+        <h4>Known For</h4>
+        <p>Beaches & Diving</p>
+      </div>
+    </div>
+
+    <!-- PHOTO GALLERY -->
+    <h2 class="gallery-title">📸 Photo Gallery</h2>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?w=900"  alt="Maldives view 1" />
+      <img src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=600" alt="Maldives view 2" />
+      <img src="https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?w=600" alt="Maldives view 3" />
+    </div>
+
+    <!-- TOP PLACES -->
+    <h2 class="places-title">📍 Top Places to Visit</h2>
+    <ul class="places-list">
+      <li><span class="num">1</span> Male Atoll — the vibrant capital island</li>
+      <li><span class="num">2</span> Baa Atoll — UNESCO Biosphere Reserve for diving</li>
+      <li><span class="num">3</span> Veligandu Island — perfect overwater bungalows</li>
+    </ul>
+
+    <!-- BEST TIME TO VISIT -->
+    <div class="best-time">
+      <h3>🗓️ Best Time to Visit</h3>
+      <p>November to April is the dry season — ideal with sunny skies and calm seas. May to October brings more rain but lower prices and fewer tourists.</p>
+    </div>
+
+    <!-- BACK HOME BUTTON -->
+    <a href="index.html" class="home-btn">← Back to All Destinations</a>
+
+  </div>
+
+  <footer>
+    <p>Made with ❤️ by <strong>You</strong> &nbsp;|&nbsp; Travel Destinations</p>
+  </footer>
+
+</body>
+</html>
